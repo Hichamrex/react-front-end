@@ -7,26 +7,26 @@ pipeline {
     stages {
         stage("init") {
             steps {
-                // script {
-                //     echo "Loading the script..."
-                //     grScript = load "script.groovy"
-                // }
+                script {
+                    echo "Loading the script..."
+                    grScript = load "script.groovy"
+                }
             }
         }
         stage("build image") {
             steps {
-                // script {
-                //     grScript.buildDockerImage(env.IMAGE_NAME)
-                //     grScript.dockerLogin()
-                //     grScript.dockerPush(env.IMAGE_NAME)
-                // }
+                script {
+                    grScript.buildDockerImage(env.IMAGE_NAME)
+                    grScript.dockerLogin()
+                    grScript.dockerPush(env.IMAGE_NAME)
+                }
             }
         }
         stage("deploy") {
             steps {
-                // script {
-                //     grScript.deployApplication(env.IMAGE_NAME)
-                // }
+                script {
+                    grScript.deployApplication(env.IMAGE_NAME)
+                }
             }
         }
     }
