@@ -27,14 +27,14 @@ def deployApplication(String imageName) {
     }
 }
 
-// def deployApplication(String imageName) {
-//     echo "Deploying docker image to EC2"
-//     def shellCmd = "bash ./server-script.sh $imageName"
-//     sshagent(['ec2-server-key']) {
-//         sh "scp ./server-script.sh ec2-user@15.188.59.125:/home/ec2-user"
-//         sh "scp ./docker-compose.yaml ec2-user@15.188.59.125:/home/ec2-user"
-//         sh "ssh -o StrictHostKeyChecking=no ec2-user@15.188.59.125 ${shellCmd}"
-//     }
-// }
+def deployApplication(String imageName) {
+    echo "Deploying the appication to EC2..."
+    def shellCmd = "bash ./server-script-back.sh $imageName"
+    sshagent(['jenkins-ssh-private-key']) {
+        sh "scp ./server-script-back.sh azureuser@20.166.72.53:/home/azureuser"
+        sh "scp ./docker-compose-spring.yaml azureuser@20.166.72.53:/home/azureuser"
+        sh "ssh -o StrictHostKeyChecking=no azureuser@20.166.72.53 ${shellCmd}"
+    }
+}
 
 return this
