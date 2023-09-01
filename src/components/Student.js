@@ -22,7 +22,7 @@ export default function Student() {
     e.preventDefault();
     const student = { name, address };
     console.log(student);
-    fetch("http://localhost:4000/student/add", {
+    fetch("http://localhost:8080/student/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(student),
@@ -32,7 +32,7 @@ export default function Student() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4000/student/getAll")
+    fetch("http://localhost:8080/student/getAll")
       .then((res) => res.json())
       .then((result) => {
         setStudents(result);
