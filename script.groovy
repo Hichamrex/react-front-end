@@ -20,7 +20,7 @@ def dockerPush(String imageName) {
 // sss
 def deployApplication(String imageName) {
     echo "Deploying the appication to EC2..."
-    def shellCmd = "bash ./server-script-back.sh $imageName"
+    def shellCmd = "bash ./server-script.sh $imageName"
     sshagent(['jenkins-ssh-private-key']) {
         sh "scp ./server-script.sh azureuser@20.166.72.53:/home/azureuser"
         sh "scp ./docker-compose.yaml azureuser@20.166.72.53:/home/azureuser"
